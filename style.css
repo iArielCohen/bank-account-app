@@ -4,6 +4,12 @@
   box-sizing: inherit;
 }
 
+:root {
+  --deposit-bgc: linear-gradient(to top left, #39b385, #9be15d);
+  --withdrawal-bgc: linear-gradient(to top left, #e52a5a, #ff585f);
+  --transfer-bgc: linear-gradient(to top left, #ffb003, #ffcb03);
+}
+
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -12,7 +18,7 @@ html {
 body {
   font-family: 'Poppins', sans-serif;
   color: #444;
-  background-color: #f3f3f3;
+  background-color: #e7e7e7;
   height: 100vh;
   padding: 2rem;
 }
@@ -86,7 +92,7 @@ nav {
   grid-template-columns: 4fr 3fr;
   grid-template-rows: auto repeat(3, 15rem) auto;
   gap: 2rem;
-  /* opacity: 0; */
+  opacity: 0;
   transition: all 1s;
 }
 
@@ -147,11 +153,11 @@ nav {
 }
 
 .movements__type--deposit {
-  background-image: linear-gradient(to top left, #39b385, #9be15d);
+  background-image: var(--deposit-bgc);
 }
 
 .movements__type--withdrawal {
-  background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+  background-image: var(--withdrawal-bgc);
 }
 
 .movements__value {
@@ -206,15 +212,15 @@ nav {
 }
 
 .operation--transfer {
-  background-image: linear-gradient(to top left, #ffb003, #ffcb03);
+  background-image: var(--transfer-bgc);
 }
 
 .operation--loan {
-  background-image: linear-gradient(to top left, #39b385, #9be15d);
+  background-image: var(--deposit-bgc);
 }
 
 .operation--close {
-  background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+  background-image: var(--withdrawal-bgc);
 }
 
 h2 {
