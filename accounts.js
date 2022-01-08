@@ -116,50 +116,50 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc) // display current user's summary
 }
 
-let currentAcount;
+let currentAccount;
 
 btnLogin.addEventListener("click", function (e) {
   e.preventDefault();
 
-  currentAcount = accounts.find(acc => acc.username === inputLoginUsername.value)
-  if (currentAcount && currentAcount.pin === Number(inputLoginPin.value)) {
-    labelWelcome.textContent = `Welcome Back ${currentAcount.owner}`
+  currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value)
+  if (currentAccount && currentAccount.pin === +(inputLoginPin.value)) {
+    labelWelcome.textContent = `Welcome Back ${currentAccount.owner}`
     containerApp.style.opacity = 1;
     inputLoginUsername.value = inputLoginPin.value = ''
     inputLoginPin.blur();
 
-    updateUI(currentAcount)
+    updateUI(currentAccount)
   }
 });
 
 btnTransfer.addEventListener('click', e => {
   e.preventDefault();
-  const amount = Number(inputTransferAmount.value)
+  const amount = +(inputTransferAmount.value)
   const receiverAcc = accounts.find(acc => acc.username === inputTransferTo.value)
 
   inputTransferAmount.value = inputTransferTo.value = ''
 
   if (amount > 0 &&
     receiverAcc &&
-    currentAcount.balance >= amount &&
-    receiverAcc.username !== currentAcount.username) {
+    currentAccount.balance >= amount &&
+    receiverAcc.username !== currentAccount.username) {
 
-    currentAcount.movements.push(-amount)
+    currentAccount.movements.push(-amount)
     receiverAcc.movements.push(amount)
 
-    updateUI(currentAcount)
+    updateUI(currentAccount)
   }
 })
 
 btnLoan.addEventListener('click', e => {
   e.preventDefault();
 
-  const amount = Number(inputLoanAmount.value)
+  const amount = +(inputLoanAmount.value)
 
-  if (amount > 0 && currentAcount.movements.some(mov => mov >= amount * 0.1)) {
-    currentAcount.movements.push(amount)
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    currentAccount.movements.push(amount)
 
-    updateUI(currentAcount)
+    updateUI(currentAccount)
   }
 
   inputLoanAmount.value = ''
@@ -168,8 +168,8 @@ btnLoan.addEventListener('click', e => {
 btnClose.addEventListener('click', e => {
   e.preventDefault()
 
-  if (inputCloseUsername.value === currentAcount.username && Number(inputClosePin.value) === currentAcount.pin) {
-    const index = accounts.findIndex(acc => acc.username === currentAcount.username)
+  if (inputCloseUsername.value === currentAccount.username && +(inputClosePin.value) === currentAccount.pin) {
+    const index = accounts.findIndex(acc => acc.username === currentAccount.username)
 
     if (confirm("Are You Sure You Want Delete This Account ?")) {
       accounts.splice(index, 1)
@@ -186,7 +186,7 @@ let sorted = false
 btnSort.addEventListener('click', e => {
   e.preventDefault()
 
-  displayMovements(currentAcount.movements, !sorted)
+  displayMovements(currentAccount.movements, !sorted)
   sorted = !sorted
 })
 
