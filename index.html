@@ -16,27 +16,41 @@
 <body>
   <!-- TOP NAVIGATION -->
   <nav>
-    <p class="welcome">Log in to get started</p>
+    <p class="welcome">התחבר כדי להתחיל &nbsp;</p>
     <img src="./images/logo.png" alt="Logo" class="logo" />
     <form class="login">
-      <input type="text" placeholder="user" class="login__input login__input--user" />
-      <input type="text" placeholder="PIN" maxlength="4" class="login__input login__input--pin" />
-      <button class="login__btn">&rarr;</button>
+      <button class="login__btn">&larr;</button>
+      <input type="text" placeholder="סיסמא" maxlength="4" class="login__input login__input--pin" />
+      <input type="text" placeholder="משתמש" class="login__input login__input--user" />
     </form>
   </nav>
+
+  <button class="open-modal" id="open_modal">&quest;</button>
+
+  <div class="modal-container" id='modal_container'>
+    <div class="modal">
+      <h2>ברוך הבא לבנקיסט !</h2>
+      <p>אפליקציית בנק בהשראת הקורס של ג'ונאס ביודמי. <br>
+        באפליקציה זו יש 2 משתמשים [אריאל כהן , ירדן פורמן] <br>
+        דרכי התחברות <br> אריאל כהן - שם משתמש : "אכ" , סיסמא : 1111 <br>
+        ירדן פורמן - שם משתמש : "יפ" , סיסמא : 2222 <br>
+      </p>
+      <button class='close_modal' id="close_modal">סגור</button>
+    </div>
+  </div>
 
   <main class="app">
     <!-- BALANCE -->
     <div class="balance">
       <div>
-        <p class="balance__label">Current balance</p>
+        <p class="balance__label">מצב חשבון</p>
         <p class="balance__date">
-          As of <span class="date">05/03/2037</span>
+          נכון לתאריך <span class="date">05/03/2037</span>
         </p>
       </div>
       <p class="balance__value">0000€</p>
     </div>
- 
+
     <!-- MOVEMENTS -->
     <div class="movements">
       <div class="movements__row">
@@ -104,8 +118,7 @@
     </p>
   </main>
 
-  <script src="accounts.js"></script>
-  <script src="dates.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 'use strict';
 
 const account1 = {
-  owner: 'Ariel Cohen',
+  owner: 'אריאל כהן',
   movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
   interestRate: 1.2,
   pin: 1111,
@@ -19,7 +19,7 @@ const account1 = {
 };
 
 const account2 = {
-  owner: 'Yarden Furman',
+  owner: 'ירדן פורמן',
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
@@ -56,6 +56,10 @@ const btnLoan = document.querySelector('.form__btn--loan');
 const btnClose = document.querySelector('.form__btn--close');
 const btnSort = document.querySelector('.btn--sort');
 
+const open_modal = document.getElementById('open_modal');
+const modal_container = document.getElementById('modal_container');
+const close_modal = document.getElementById('close_modal');
+
 const inputLoginUsername = document.querySelector('.login__input--user');
 const inputLoginPin = document.querySelector('.login__input--pin');
 const inputTransferTo = document.querySelector('.form__input--to');
@@ -66,15 +70,23 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 // Functions
 
+open_modal.addEventListener('click', () => {
+  modal_container.classList.toggle('show')
+})
+
+close_modal.addEventListener('click', () => {
+  modal_container.classList.remove('show')
+})
+
 const formatMovementDate = function (date, locale) {
   const calcDaysPassed = (date1, date2) =>
     Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
   const daysPassed = calcDaysPassed(new Date(), date);
 
-  if (daysPassed === 0) return 'Today';
-  if (daysPassed === 1) return 'Yesterday';
-  if (daysPassed <= 7) return `${daysPassed} days ago`;
+  if (daysPassed === 0) return 'היום';
+  if (daysPassed === 1) return 'אתמול';
+  if (daysPassed <= 7) return `ימים ${daysPassed} לפני `;
   return new Intl.DateTimeFormat(locale).format(date);
 };
 
@@ -135,7 +147,7 @@ const calcDisplaySummary = function (acc) {
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
-      .toLowerCase()
+      // .toLowerCase()
       .split(' ')
       .map(name => name[0])
       .join('');
@@ -165,7 +177,7 @@ const startLogOutTimer = function () {
     // When 0 seconds, stop timer and log out user
     if (time === 0) {
       clearInterval(timer);
-      labelWelcome.textContent = 'Log in to get started';
+      labelWelcome.textContent = 'התחבר כדי להתחיל';
       containerApp.style.opacity = 0;
     }
 
@@ -195,9 +207,9 @@ btnLogin.addEventListener('click', function (e) {
 
   if (currentAccount.pin === +inputLoginPin.value) {
     // Display UI and message
-    labelWelcome.textContent = `Welcome back, ${
+    labelWelcome.textContent = `ברוכים השבים , ${
       currentAccount.owner.split(' ')[0]
-    }`;
+    } `;
     containerApp.style.opacity = 100;
 
     // Create current date and time
