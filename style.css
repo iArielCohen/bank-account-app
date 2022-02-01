@@ -90,7 +90,7 @@ nav {
   bottom: 20px;
   right: 20px;
   border: none;
-  background-color: rgb(128, 128, 128);
+  background: linear-gradient(to right, rgb(0, 65, 243), rgb(36, 136, 251));
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   color: #fff;
   height: 50px;
@@ -176,6 +176,7 @@ button.close_modal {
 }
 
 .balance__label {
+  text-align: right;
   font-size: 2.2rem;
   font-weight: 500;
   margin-bottom: -0.2rem;
@@ -283,14 +284,17 @@ button.close_modal {
 }
 
 .operation--transfer {
+  text-align: center;
   background-image: var(--transfer-bgc);
 }
 
 .operation--loan {
+  text-align: center;
   background-image: var(--deposit-bgc);
 }
 
 .operation--close {
+  text-align: center;
   background-image: var(--withdrawal-bgc);
 }
 
